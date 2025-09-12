@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registrations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%); min-height: 100vh;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand d-flex flex-column align-items-center" href="/registrations" style="width:100%;">
+                <span style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 18px; margin-bottom: 2px;">
+                        <img src="/logo.png" alt="DevOps Logo" width="72" height="72" style="background: white; border-radius: 12px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: contain;"/>
+                        <img src="/trainer.jpg" alt="Trainer" width="110" height="110" style="background: #f8fafc; border-radius: 16px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: cover;"/>
+                    </div>
+                    <span style="font-weight: bold; font-size: 1.5rem; letter-spacing: 1px; color: #fff; text-align: center; width: 100%;">Ashish Technologies</span>
+                </span>
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="mb-0 text-primary">Student Registrations</h2>
+                            <a href="/registrations/new" class="btn btn-primary btn-lg">Add Registration</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Course</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="registration : ${registrations}">
+                                    <td th:text="${registration.id}"></td>
+                                    <td th:text="${registration.name}"></td>
+                                    <td th:text="${registration.email}"></td>
+                                    <td th:text="${registration.course}"></td>
+                                    <td>
+                                        <a th:href="@{'/registrations/edit/' + ${registration.id}}" class="btn btn-warning btn-sm me-2">Edit</a>
+                                        <a th:href="@{'/registrations/delete/' + ${registration.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
