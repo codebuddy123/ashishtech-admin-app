@@ -5,7 +5,12 @@ import com.ashishtech.admin.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 @RequestMapping("/registrations")
@@ -14,8 +19,19 @@ public class RegistrationController {
     private RegistrationService registrationService;
 
     @GetMapping
-    public String listRegistrations(Model model) {
+    public String listRegistrations(Model model, HttpServletRequest request) {
         model.addAttribute("registrations", registrationService.getAllRegistrations());
+        // Get client IP
+        String clientIp = request.getRemoteAddr();
+        // Get server IP
+        String serverIp = "Unknown";
+        try {
+            serverIp = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            // leave as Unknown
+        }
+        model.addAttribute("clientIp", clientIp);
+        model.addAttribute("serverIp", serverIp);
         return "registrations";
     }
 
@@ -26,9 +42,17 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String saveRegistration(@ModelAttribute Registration registration) {
+    public String saveRegistration(@Valid @ModelAttribute Registration registration, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("registration", registration);
+            return "registration_form";
+        }
         registrationService.saveRegistration(registration);
-        return "redirect:/registrations";
+        return "redirect:/registrations/thankyou";
+    }
+    @GetMapping("/thankyou")
+    public String showThankYouPage() {
+        return "thankyou";
     }
 
     @GetMapping("/edit/{id}")
@@ -39,7 +63,12 @@ public class RegistrationController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateRegistration(@PathVariable Long id, @ModelAttribute Registration registration) {
+    public String updateRegistration(@PathVariable Long id, @Valid @ModelAttribute Registration registration, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            registration.setId(id);
+            model.addAttribute("registration", registration);
+            return "registration_form";
+        }
         registration.setId(id);
         registrationService.saveRegistration(registration);
         return "redirect:/registrations";

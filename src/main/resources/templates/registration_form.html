@@ -9,11 +9,11 @@
 <body style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%); min-height: 100vh;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
         <div class="container-fluid justify-content-center">
-            <a class="navbar-brand d-flex flex-column align-items-center" href="/registrations" style="width:100%;">
+            <a class="navbar-brand d-flex flex-column align-items-center" th:href="@{'./'}" style="width:100%;">
                 <span style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 18px; margin-bottom: 2px;">
-                        <img src="/logo.png" alt="DevOps Logo" width="72" height="72" style="background: white; border-radius: 12px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: contain;"/>
-                        <img src="/trainer.jpg" alt="Trainer" width="110" height="110" style="background: #f8fafc; border-radius: 16px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: cover;"/>
+                        <img src="/ashishtech-admin/logo.png" alt="DevOps Logo" width="120" height="120" style="background: white; border-radius: 16px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: contain;"/>
+                        <img src="/ashishtech-admin/trainer.jpg" alt="Trainer" width="120" height="120" style="background: #f8fafc; border-radius: 16px; padding: 4px; box-shadow: 0 2px 8px #0001; object-fit: cover;"/>
                     </div>
                     <span style="font-weight: bold; font-size: 1.5rem; letter-spacing: 1px; color: #fff; text-align: center; width: 100%;">Ashish Technologies</span>
                 </span>
@@ -26,14 +26,21 @@
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-body p-4">
                         <h2 class="mb-4 text-center text-primary" th:text="${registration.id != null} ? 'Edit Registration' : 'New Registration'"></h2>
-                        <form th:action="${registration.id != null} ? @{'/registrations/update/' + ${registration.id}} : @{/registrations}" th:object="${registration}" method="post">
+                        <form th:action="${registration.id != null} ? @{'/registrations/update/' + ${registration.id}} : @{'/registrations'}" th:object="${registration}" method="post">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control form-control-lg" id="name" th:field="*{name}" required placeholder="Enter student name">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control form-control-lg" id="email" th:field="*{email}" required placeholder="Enter student email">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control form-control-lg" id="phoneNumber" th:field="*{phoneNumber}" required placeholder="Enter student phone number">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="course" class="form-label">Course</label>
@@ -44,10 +51,11 @@
                                     <option value="AWS">AWS</option>
                                     <option value="Kubernetes">Kubernetes</option>
                                 </select>
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></div>
                             </div>
                             <div class="d-flex justify-content-between mt-4">
                                 <button type="submit" class="btn btn-success btn-lg px-4">Submit</button>
-                                <a href="/registrations" class="btn btn-secondary btn-lg px-4">Cancel</a>
+                                <a th:href="@{'/registrations'}" class="btn btn-secondary btn-lg px-4">Cancel</a>
                             </div>
                         </form>
                     </div>

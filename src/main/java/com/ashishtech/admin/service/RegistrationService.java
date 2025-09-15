@@ -1,7 +1,7 @@
 package com.ashishtech.admin.service;
 
 import com.ashishtech.admin.entity.Registration;
-// import com.ashishtech.admin.repository.RegistrationRepository;
+import com.ashishtech.admin.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,24 +11,21 @@ import java.util.Optional;
 @Service
 public class RegistrationService {
     @Autowired
-    // private RegistrationRepository registrationRepository;
+    private RegistrationRepository registrationRepository;
 
     public List<Registration> getAllRegistrations() {
-    // return registrationRepository.findAll();
-    return null;
+    return registrationRepository.findAll();
     }
 
     public Optional<Registration> getRegistration(Long id) {
-    // return registrationRepository.findById(id);
-    return null;
+    return registrationRepository.findById(id);
     }
 
     public Registration saveRegistration(Registration registration) {
-    // return registrationRepository.save(registration);
-    return null;
+    return registrationRepository.save(registration);
     }
 
     public void deleteRegistration(Long id) {
-    // registrationRepository.deleteById(id);
+    registrationRepository.deleteById(id);
     }
 }
