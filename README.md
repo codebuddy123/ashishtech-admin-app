@@ -23,6 +23,22 @@ A modern Spring Boot web application for managing student registrations at Ashis
 - Java 17 or higher
 - Maven 3.6+
 
+### Database Setup (MySQL)
+
+Before running the application, create the database and user in MySQL:
+
+1. Log in to MySQL as root:
+   ```sh
+   mysql -u root -p
+   ```
+2. Create a database and user (replace values as needed):
+   ```sql
+   CREATE DATABASE your_db_name;
+   CREATE USER 'your_db_user'@'%' IDENTIFIED BY 'your_db_password';
+   GRANT ALL PRIVILEGES ON your_db_name.* TO 'your_db_user'@'%';
+   FLUSH PRIVILEGES;
+   ```
+
 ### Running Locally
 1. Clone the repository:
    ```sh
@@ -33,10 +49,14 @@ A modern Spring Boot web application for managing student registrations at Ashis
    ```sh
    ./mvnw clean package
    ```
-3. Run the application:
+
+
+3. Run the application (with environment variables for database connection):
    ```sh
-   ./mvnw spring-boot:run
+   DB_HOST=your_database_server_ip_or_host DB_NAME=your_db_name DB_USERNAME=your_db_user DB_PASSWORD=your_db_password ./mvnw spring-boot:run
    ```
+   Replace the values as needed for your environment.
+
 4. Open your browser and go to [http://localhost:8080/registrations](http://localhost:8080/registrations)
 
 ## Project Structure
