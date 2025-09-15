@@ -1,3 +1,50 @@
+### Deploying to an External Tomcat Server
+
+1. **Build the WAR file:**
+   ```sh
+   ./mvnw clean package
+   ```
+   The WAR will be generated in the `target/` directory (e.g., `ashishtech-admin.war`).
+
+2. **Set environment variables for database connection:**
+   Edit `/etc/environment` and add the following lines (replace with your values):
+   ```sh
+   DB_HOST=your_database_server_ip_or_host
+   DB_NAME=your_db_name
+   DB_USERNAME=your_db_user
+   DB_PASSWORD=your_db_password
+   ```
+   Save and close the file, then reload the environment:
+   ```sh
+   source /etc/environment
+   ```
+
+3. **Configure Tomcat to use these environment variables:**
+   Edit your Tomcat systemd service file (e.g., `/etc/systemd/system/tomcat.service`) and add:
+   ```ini
+   EnvironmentFile=/etc/environment
+   ```
+   Example snippet:
+   ```ini
+   [Service]
+   Type=forking
+   EnvironmentFile=/etc/environment
+   ...
+   ```
+   Then reload systemd and restart Tomcat:
+   ```sh
+   sudo systemctl daemon-reload
+   sudo systemctl restart tomcat
+   ```
+
+4. **Deploy the WAR:**
+   Copy the WAR file to Tomcat's `webapps/` directory:
+   ```sh
+   sudo cp target/ashishtech-admin.war /opt/tomcat/webapps/
+   ```
+
+5. **Access the application:**
+   Open your browser and go to `http://your-server-ip:8080/ashishtech-admin/registrations`
 # AshishTech Admin App
 
 A modern Spring Boot web application for managing student registrations at Ashish Technologies.
@@ -7,7 +54,6 @@ A modern Spring Boot web application for managing student registrations at Ashis
 - List all registered students in a modern, responsive table
 - Edit and delete registrations
 - View server and client IP addresses
-- Summary statistics and system info (optional)
 
 ## Technologies Used
 - Java 17+
