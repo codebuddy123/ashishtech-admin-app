@@ -51,11 +51,11 @@ Before running the application, create the database and user in MySQL:
 
 3. Run the application (with environment variables for database connection):
    ```sh
-   DB_HOST=your_database_server_ip_or_host DB_NAME=your_db_name DB_USERNAME=your_db_user DB_PASSWORD=your_db_password ./mvnw spring-boot:run
+   DB_HOST=localhost DB_NAME=your_db_name DB_USERNAME=your_db_user DB_PASSWORD=your_db_password ./mvnw spring-boot:run
    ```
    Replace the values as needed for your environment.
 
-4. Open your browser and go to [http://localhost:8080/registrations](http://localhost:8080/registrations)
+4. Open your browser and go to [http://localhost:8080/ashishtech-admin/](http://localhost:8080/ashishtech-admin/)
 
 
 ### Deploying to an External Tomcat Server
@@ -104,7 +104,7 @@ Before running the application, create the database and user in MySQL:
    ```
 
 5. **Access the application:**
-   Open your browser and go to `http://your-server-ip:8080/ashishtech-admin/registrations`
+   Open your browser and go to `http://your-server-ip:8080/ashishtech-admin/`
 
 ## Project Structure
 - `src/main/java` - Java source code (controllers, services, entities)
