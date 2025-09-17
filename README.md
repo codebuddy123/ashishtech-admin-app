@@ -106,6 +106,44 @@ Before running the application, create the database and user in MySQL:
 5. **Access the application:**
    Open your browser and go to `http://your-server-ip:8080/ashishtech-admin/`
 
+## Testing the App with SQL Queries
+
+You can verify the CRUD operations directly in your MySQL database using the following SQL queries (replace `registration` with your actual table name if different):
+
+### 1. Add Registration (Insert)
+After submitting the registration form in the app, check the new record:
+```sql
+SELECT * FROM registration ORDER BY id DESC LIMIT 5;
+```
+
+### 2. View All Registrations (Read)
+To see all registered students:
+```sql
+SELECT * FROM registration;
+```
+
+### 3. Edit Registration (Update)
+After editing a student in the app, you can verify the change:
+```sql
+SELECT * FROM registration WHERE id = <student_id>;
+```
+Or update directly:
+```sql
+UPDATE registration SET name = 'New Name', email = 'new@email.com' WHERE id = <student_id>;
+```
+
+### 4. Delete Registration (Delete)
+After deleting a student in the app, confirm removal:
+```sql
+SELECT * FROM registration WHERE id = <student_id>;
+```
+Or delete directly:
+```sql
+DELETE FROM registration WHERE id = <student_id>;
+```
+
+> Replace `<student_id>` with the actual ID value.
+
 ## Project Structure
 - `src/main/java` - Java source code (controllers, services, entities)
 - `src/main/resources/templates` - Thymeleaf HTML templates
