@@ -1,0 +1,9 @@
+com/ashishtech/admin/config/JpaConfig.class
+com/ashishtech/admin/AshishtechAdminAppApplication.class
+com/ashishtech/admin/config/AppWebConfig.class
+com/ashishtech/admin/config/WebConfig.class
+com/ashishtech/admin/service/RegistrationService.class
+com/ashishtech/admin/repository/RegistrationRepository.class
+com/ashishtech/admin/entity/Registration.class
+com/ashishtech/admin/controller/HomeController.class
+com/ashishtech/admin/controller/RegistrationController.class

@@ -1,0 +1,11 @@
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/config/JpaConfig.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/AshishtechAdminAppApplication.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/entity/Registration.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/config/WebConfig.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/config/AppWebConfig.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/service/RegistrationService.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/repository/RegistrationRepository.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/config/DisableJpaConfig.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/config/ConditionalJpaConfig.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/controller/RegistrationController.java
+/Users/ashish/Desktop/Rushi Tech/ashishtech-admin-app/src/main/java/com/ashishtech/admin/controller/HomeController.java
